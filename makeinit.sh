@@ -1,7 +1,7 @@
 #!/bin/bash
 
 for i in {1..15}; do 
-    cp ./Makefile ./var$i/ 
+    cp ./Makefile ./base/var$i/ 
     echo "Creating a Makefile for: var$i"
 done
 
