@@ -1,6 +1,6 @@
 BDIR = './base'
 Dir.exist?(BDIR) ? exit(0) : Dir.mkdir(BDIR)
-15.times { |var|
+(1..15).each { |var|
     init_file = ->(fn) { File.new(fn, 'w+') }
     var_dir = "#{BDIR}/var#{var}" 
     Dir.mkdir(var_dir)
