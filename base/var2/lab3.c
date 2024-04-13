@@ -45,6 +45,6 @@ int main() {
         arr[i] = i;
     }
     printf("Recursive function result: %d\n", recursion(arr, 0, l-1, s));
-    printf("Iterative function result:%d\n", iteration(arr, l, s));
+    printf("Iterative function result: %d\n", iteration(arr, l, s));
     return 0;
 }
