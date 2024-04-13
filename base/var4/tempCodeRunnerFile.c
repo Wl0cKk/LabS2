@@ -3,9 +3,7 @@
 int fib_r(int n) { return n <= 1 ? n : fib_r(n-1) + fib_r(n-2); }
 
 int fib_i(int n) {
-    if (n == 0) { return 0; }
-    if (n == 1) { return 1; }    
-    int a = 0, b = 1;
+    int a, b = 0, 1;
     for (int i = 2; i <= n; ++i) {
         int tmp = b;
         b = a + b;
