@@ -10,11 +10,9 @@ double recursive(double a, double x0, int n) {
 
 double iterative(double a, double x0, int iterations) {
     double xn = x0;
-    
     for (int i = 0; i < iterations; i++) {
         xn = 0.5 * (xn + (a / xn));
     }
-    
     return xn;
 }
 
@@ -25,6 +23,5 @@ int main() {
 
     printf("Recursive: %f\n", recursive(a, x0, n));
     printf("Iterative: %f\n", iterative(a, x0, n));
-
     return 0;
 }
