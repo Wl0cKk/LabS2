@@ -1,15 +1,19 @@
 #include "stdio.h"
 
 int main() {
-    char str[] = "10101010@10,01#101001     10 11111 00000 10101 01010 1 00000";
-    int count = 0;
-    for (int i = 0; str[i] != '\0'; ++i) {
-        if (str[i] == '1' || str[i] == '0') {
-            count += 1;
-        } else {
-            count = 0;
+    char str[] = "00000111110101010111110000001110000000000";
+   int i = 1, cc = 1, cg = 0, pc = str[0];
+    while (1) {
+        if (str[i] != pc) {
+            if (cc == 5) {
+                ++cg;
+            }
+            cc = 0;
+            pc = str[i];
         }
+        ++cc;
+        if ((str[i++] == '\0')) break;
     }
-    printf("Result: %d", count);
+    printf("Result: %d", cg);
     return 0;
 }
