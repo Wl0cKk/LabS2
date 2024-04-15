@@ -2,23 +2,18 @@
 
 int main() {
     char str[] = "00000111110101010111110000001110000000000";
-    char statement = str[0];
-    int count = 0;
-    int groups = 0;
-    for (int i = 0; str[i] != '\0'; ++i) { 
-        if (str[i] == statement) {
-            count++;
-        } else {
-            if (count == 5) {
-                groups++;
+   int i = 1, cc = 1, cg = 0, pc = str[0];
+    while (1) {
+        if (str[i] != pc) {
+            if (cc == 5) {
+                ++cg;
             }
-            statement = str[i];
-            count = 1;
+            cc = 0;
+            pc = str[i];
         }
+        ++cc;
+        if ((str[i++] == '\0')) break;
     }
-    if (count == 5) {
-        groups++;
-    }
-    printf("Result: %d", groups);
+    printf("Result: %d", cg);
     return 0;
 }
