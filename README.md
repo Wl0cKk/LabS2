@@ -1,1 +1,1 @@
-[work done](plan.png)
+![work done](plan.png)
