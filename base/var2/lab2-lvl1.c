@@ -58,16 +58,6 @@ void addRecord(struct Student* students, int *totalStudents) {
     }
 }
 
-void solveTask(struct Student *students, int totalStudents, char targetLetter) {
-    printf("\nHonors students whose last name start with %c:\n", targetLetter);
-    for (int i = 0; i < totalStudents; i++) {
-        if (students[i].averageGrade >= SUCCESS_GRADE && students[i].lastname[0] == targetLetter) {
-            printf("Last name: %s, Group: %d, GPA: %.2f\n",
-                   students[i].lastname, students[i].groupNumber, students[i].averageGrade);
-        }
-    }
-}
-
 void saveRecordsToFile(struct Student* students, int totalStudents) {
     FILE *file = fopen("base.txt", "w");
     if (file == NULL) {
@@ -93,6 +83,21 @@ void loadRecordsFromFile(struct Student* students, int *totalStudents) {
     while (fscanf(file, "%s %d %d %d %d %f", students[*totalStudents].lastname, &students[*totalStudents].groupNumber,
                   &students[*totalStudents].physicsGrade, &students[*totalStudents].mathGrade, &students[*totalStudents].computerScienceGrade, &students[*totalStudents].averageGrade) == 6) {
         (*totalStudents)++;
+    }
+
+    fclose(file);
+}
+
+void solveTask(struct Student *students, int totalStudents, char targetLetter) {
+    printf("\nHonors students whose last name start with %c:\n", targetLetter);
+    FILE *file = fopen("base.txt", "a");
+    fprintf(file, "-----------------------------------------------------------------------------------\n");
+    for (int i = 0; i < totalStudents; i++) {
+        if (students[i].averageGrade >= SUCCESS_GRADE && students[i].lastname[0] == targetLetter) {
+            char *res = "Last name: %s, Group: %d, GPA: %.2f\n";
+            printf(res, students[i].lastname, students[i].groupNumber, students[i].averageGrade);
+            fprintf(file, res, students[i].lastname, students[i].groupNumber, students[i].averageGrade);
+        }
     }
 
     fclose(file);
