@@ -93,7 +93,7 @@ void solveTask(struct Student *students, int totalStudents) {
     fprintf(file, "-----------------------------------------------------------------------------------\n");
     for (int i = 0; i < totalStudents; i++) {
         if (students[i].averageGrade >= SUCCESS_GRADE) {
-            char *res = "Last name: %s, Group: %d, GPA: %.2f\n";
+            char *res = "---\nLast name: %s, Group: %d, GPA: %.2f\n---\n";
             printf(res, students[i].lastname, students[i].groupNumber, students[i].averageGrade);
             fprintf(file, res, students[i].lastname, students[i].groupNumber, students[i].averageGrade);
         }
