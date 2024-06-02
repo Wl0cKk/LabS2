@@ -1,9 +1,9 @@
-#include <stdio.h>
-#include <string.h>
+#include "stdio.h"
+#include "string.h"
 
 int main() {
-    char str[] = "bone chicken six good live practice spawn quick tube agree bless gold venue cargo round \
-    bridge cost plastic mad regret option decorate print title";
+    char str[] = "Seed Phrase Generator is a simple JavaScript library that helps you generate \
+    random seed phrases, which can be used to create Ethereum wallets";
     int k;
 
     printf("Input K: "); scanf("%d", &k); puts("");
