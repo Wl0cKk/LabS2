@@ -1,127 +1,120 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct Node {
-    int data;
-    struct Node* prev;
-    struct Node* next;
-} Node;
+#include <string.h>
 
 typedef struct {
-    Node* head;
-    Node* tail;
-} DoublyLinkedList;
+    int data[100];
+    int top;
+} UintStack;
 
-Node* create_node(int value) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = value;
-    newNode->prev = NULL;
-    newNode->next = NULL;
-    return newNode;
+void init_stack(UintStack* stack) {
+    memset(stack->data, 0, sizeof(stack->data));
+    stack->top = 0;
 }
 
-void insert_at_beginning(DoublyLinkedList* list, int value) {
-    Node* newNode = create_node(value);
-    if (list->head == NULL) {
-        list->head = newNode;
-        list->tail = newNode;
-    } else {
-        newNode->next = list->head;
-        list->head->prev = newNode;
-        list->head = newNode;
+int stack_push(UintStack* stack, int v) {
+    if (stack->top >= 100) {
+        return 0;
     }
+    stack->data[stack->top++] = v;
+    return 1;
 }
 
-void insert_at_end(DoublyLinkedList* list, int value) {
-    Node* newNode = create_node(value);
-    if (list->head == NULL) {
-        list->head = newNode;
-        list->tail = newNode;
-    } else {
-        newNode->prev = list->tail;
-        list->tail->next = newNode;
-        list->tail = newNode;
+int stack_push_front(UintStack* stack, int v) {
+    if (stack->top >= 100) {
+        return 0;
     }
-}
 
-void print_from_beginning(DoublyLinkedList* list) {
-    Node* current = list->head;
-    while (current != NULL) {
-        printf("%d ", current->data);
-        current = current->next;
+    for (int i = stack->top; i > 0; --i) {
+        stack->data[i] = stack->data[i - 1];
     }
-    printf("\n");
+
+    stack->data[0] = v;
+    stack->top++;
+    return 1;
 }
 
-void print_from_end(DoublyLinkedList* list) {
-    Node* current = list->tail;
-    while (current != NULL) {
-        printf("%d ", current->data);
-        current = current->prev;
+int stack_pop(UintStack* stack) {
+    if (stack->top <= 0) {
+        return -1;
+    }
+    return stack->data[--stack->top];
+}
+
+void print_stack(UintStack* stack) {
+    for (int i = 0; i < stack->top; ++i) {
+        printf("%d ", stack->data[i]);
     }
     printf("\n");
 }
 
-void task_9_dll(DoublyLinkedList* list) {
-    Node* current = list->head;
-
+void task_9(UintStack* stack) {
     int minIndex = 0;
     int maxIndex = 0;
-    int currentIndex = 0;
-
-    while (current != NULL) {
-        if (current->data < list->head->data) {
-            minIndex = currentIndex;
+    for (int i = 0; i < stack->top; ++i) {
+        if (stack->data[i] < stack->data[minIndex]) {
+            minIndex = i;
         }
-        if (current->data > list->head->data) {
-            maxIndex = currentIndex;
+        if (stack->data[i] > stack->data[maxIndex]) {
+            maxIndex = i;
         }
-        current = current->next;
-        currentIndex++;
     }
 
     int start = (minIndex < maxIndex) ? minIndex : maxIndex;
     int end = (minIndex > maxIndex) ? minIndex : maxIndex;
 
-    current = list->head;
-    for (int i = 0; i < start; ++i) {
-        current = current->next;
-    }
-
-    Node* temp;
     for (int i = start + 1; i < end; ++i) {
-        temp = current->next;
-        current->next = temp->next;
-        if (temp->next != NULL) {
-            temp->next->prev = current;
-        }
-        free(temp);
+        stack->data[i] = 0;
     }
 
-    list->tail = current;
+    int newSize = start + 1 + (stack->top - end);
+
+    for (int i = start + 1; i < stack->top; ++i) {
+        stack->data[i] = stack->data[i + end - start - 1];
+    }
+
+    stack->top = newSize;
+}
+
+void solve_task(UintStack* stack) {
+    task_9(stack);
+}
+
+void view_from_start(UintStack* stack) {
+    print_stack(stack);
+}
+
+void view_from_end(UintStack* stack) {
+    for (int i = stack->top - 1; i >= 0; --i) {
+        printf("%d ", stack->data[i]);
+    }
+    printf("\n");
 }
 
 int main() {
-    DoublyLinkedList dll = {NULL, NULL};
+    UintStack s;
+    init_stack(&s);
 
-    insert_at_end(&dll, 42);
-    insert_at_end(&dll, 100);
-    insert_at_end(&dll, 55);
-    insert_at_end(&dll, 57);
-    insert_at_end(&dll, 52);
-    insert_at_end(&dll, -100);
-    insert_at_end(&dll, 5);
-    insert_at_end(&dll, 7);
+    stack_push(&s, 42);
+    stack_push(&s, 100);
+    stack_push(&s, 55);
+    stack_push(&s, 57);
+    stack_push(&s, 52);
+    stack_push(&s, -100);
+    stack_push(&s, 5);
+    stack_push(&s, 7);
 
-    printf("List from the beginning: ");
-    print_from_beginning(&dll);
-    
-    task_9_dll(&dll);
+    print_stack(&s);
 
-    printf("Modified list from the beginning: ");
-    print_from_beginning(&dll);
+    stack_push_front(&s, 999);
+    stack_push(&s, 888);
 
-    // Теперь можешь опробовать другие функции, например, insert_at_beginning и print_from_end
+    view_from_start(&s);
+    view_from_end(&s);
+
+    solve_task(&s);
+
+    print_stack(&s);
 
     return 0;
 }
