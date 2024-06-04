@@ -1,10 +1,10 @@
-#include "stdlib.h"
-#include "memory.h"
-#include "stdbool.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct {
     int data[100];
-    int top = 0;
+    int top;
 } UintStack;
 
 void init_stack(UintStack* stack) {
@@ -12,12 +12,12 @@ void init_stack(UintStack* stack) {
     stack->top = 0;
 }
 
-bool stack_push(UintStack* stack, int v) {
+int stack_push(UintStack* stack, int v) {
     if (stack->top >= 100) {
-        return false;
+        return 0;
     }
     stack->data[stack->top++] = v;
-    return true;
+    return 1;
 }
 
 int stack_pop(UintStack* stack) {
@@ -51,7 +51,8 @@ void task_6(UintStack* stack) {
 }
 
 int main() {
-    UintStack s; init_stack(&s);
+    UintStack s;
+    init_stack(&s);
     stack_push(&s, 42);
     stack_push(&s, 100);
     stack_push(&s, 5);
@@ -61,3 +62,4 @@ int main() {
     print_stack(&s);
     return 0;
 }
+
