@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    char str[] = "101010100000101111100000011100";
+    char str[] = "00000111100000111111";
     char cchr = str[0];
     int cc = 1;
     int minc = 100;
