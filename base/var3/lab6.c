@@ -205,10 +205,10 @@ int task_3(Node* node, int key) {
     }
 
     if (node->left != NULL && node->left->item->uid == key) {
-        free_tree(node->left); // Remove the left branch
+        free_tree(node->left);
         node->left = NULL;
     } else if (node->right != NULL && node->right->item->uid == key) {
-        free_tree(node->right); // Remove the right branch
+        free_tree(node->right);
         node->right = NULL;
     }
 
