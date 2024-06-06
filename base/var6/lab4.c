@@ -12,10 +12,9 @@ typedef struct {
 bool stack_push(IntStack* stack, int v);
 
 void init_stack(IntStack* stack) {
-    //memset(stack->data, 0, sizeof(stack->data));
     stack->top = 0;
     for (int i = 0; i < 10; ++i) {
-        stack_push(stack, rand() % 21 - 10);
+        stack_push(stack, rand() % 101 - 50);
     }
 }
 bool stack_push(IntStack* stack, int v) {
