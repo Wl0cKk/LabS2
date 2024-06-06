@@ -212,7 +212,7 @@ int task_5(Node* node) {
 }
 
 
-Item items[] = {{"display", 100}, {"keyboard", 101}, {"mouse", 200}, {"motherboard", 900}, {"power supply", 550}, {"cpu", 180}, {"gpu", 150}, {"case", 165}};
+Item items[] = {{"QWERTY", 1000}, {"ASDFGH", 9000}, {"ZXCVrtgtgtgBN", 2000}, {"PLMOKN", 8000}, {"POIUYT", 3000}, {"LKJHGF", 5000}, {"MNBVCX", 4000}, {"BHUYGVCFT", 2222}};
 
 
 int main() {
@@ -230,7 +230,7 @@ int main() {
     printf("\nBalanced tree:\n");
     print_tree(root, 0);
 
-    Item* newItem = create_item("floppy-disk", 420);
+    Item* newItem = create_item("ALSKDJFHGG", 4222);
     add_leaf(root, newItem);
     printf("\nTree after adding:\n");
     print_tree(root, 0);

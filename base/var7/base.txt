@@ -1,0 +1,16 @@
+Iertgerg 5 4 9 9 7.33
+rtyy 5 5 5 5 5.00
+Qwerty 3 3 3 10 5.33
+Ldvijbwfv 99 1 2 1000 334.33
+twefkbwrf 334 3 2 2 2.33
+gefruhb 100 10 3 3 5.33
+Lfivugh 5 10 10 10 10.00
+OIhiwrgf 4 3 2 7 4.00
+
+-----------------------------------------------------------------------------------
+---
+Last name: twefkbwrf, Group: 334, math grade: 2, IT grade: 2
+---
+---
+Last name: gefruhb, Group: 100, math grade: 3, IT grade: 3
+---
