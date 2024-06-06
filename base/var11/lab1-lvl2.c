@@ -9,13 +9,11 @@ int main() {
     char *sorted_words[25];
     int num_words = 0;
 
-    // Split the input string into individual words
     while (word != NULL) {
         sorted_words[num_words++] = word;
         word = strtok(NULL, spacer);
     }
 
-    // Bubble sort
     for (int i = 0; i < num_words - 1; i++) {
         for (int j = 0; j < num_words - i - 1; j++) {
             if (strcmp(sorted_words[j], sorted_words[j+1]) > 0) {
@@ -26,7 +24,6 @@ int main() {
         }
     }
 
-    // Print the sorted words
     for (int i = 0; i < num_words; i++) {
         printf("%s ", sorted_words[i]);
     }
