@@ -1,0 +1,9 @@
+KJbwqrg 6 4 7 8 6.33
+IYGwrg 6 6 1 14286848 4762285.00
+HGHVB 2 2 2 2 2.00
+JBIBlkn 5 6 7 8 7.00
+Loooooo 666 7 6 9 7.33
+Hqewefwef 1111111 1 2 10 4.33
+-----------------------------------------------------------------------------------
+Last name: Loooooo, Group: 666, programming grade: 9 GPA: 7.33
+Last name: Hqewefwef, Group: 1111111, programming grade: 10 GPA: 4.33
