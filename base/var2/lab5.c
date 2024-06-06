@@ -59,29 +59,26 @@ void print_backward(BiDirList* list) {
     printf("\n");
 }
 
-void task_1(BiDirList* list) {
-    BiDirList positive_list, negative_list;
-    init_list(&positive_list);
-    init_list(&negative_list);
-
+void task_2(BiDirList* list) {
     ListItem* current = list->head;
 
     while (current != NULL) {
         ListItem* next = current->next;
-
-        if (current->value >= 0) {
-            add_to_end(&positive_list, current->value);
-        } else {
-            add_to_end(&negative_list, current->value);
+        if (current->value % 2 == 0) {
+            if (current == list->head) {
+                list->head = next;
+                if (list->head) list->head->prev = NULL;
+            } else if (current == list->tail) {
+                list->tail = current->prev;
+                if (list->tail) list->tail->next = NULL;
+            } else {
+                current->prev->next = current->next;
+                current->next->prev = current->prev;
+            }
+            free(current);
         }
-
         current = next;
     }
-
-    printf("Positive List: ");
-    print_forward(&positive_list);
-    printf("Negative List: ");
-    print_forward(&negative_list);
 }
 
 int main() {
@@ -96,7 +93,10 @@ int main() {
     print_forward(&list);
     print_backward(&list);
 
-    task_1(&list);
+    task_2(&list);
+
+    print_forward(&list);
+    print_backward(&list);
 
     return 0;
 }
