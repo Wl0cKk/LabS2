@@ -1,5 +1,6 @@
 .gitignore
 .vscode
 bin
+images
 tempCodeRunnerFile.c
 .~lock.plan.ods#
