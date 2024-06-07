@@ -140,16 +140,21 @@ void task_13(BiDirList* list) {
 int main() {
     BiDirList list;
     init_list(&list);
+    puts("List forward");
     print_list_forward(&list);
+    puts("List backward");
     print_list_backward(&list);
     printf("\n");
 
+
     list_push_front(&list, 100);
     list_push_back(&list, 100);
+    puts("List with added value into front and back sides");
     print_list_forward(&list);
     printf("\n");
 
     task_13(&list);
+    puts("Completed task");
     print_list_forward(&list);
     free_list(&list);
     return 0;

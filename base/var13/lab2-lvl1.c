@@ -101,13 +101,13 @@ void solveTask(struct Student *students, int totalStudents, int targetGroup) {
     }
     
     groupGPA /= groupCapacity;
-    printf("Total Group <%d> GPA: %f\n", targetGroup, groupGPA); fprintf(file, "Total Group <%d> GPA: %f\n", targetGroup, groupGPA);
+    printf("Group <%d> Total GPA: %f\n", targetGroup, groupGPA); fprintf(file, "Total Group <%d> GPA: %f\n", targetGroup, groupGPA);
     
     for (int i = 0; i < totalStudents; i++) {
         if (students[i].groupNumber == targetGroup && students[i].averageGrade > groupGPA) { 
             char *res = "---\nLast name: %s, GPA: %.1f\n---\n";
-            printf(res, students[i].lastname, students[i].groupNumber, students[i].averageGrade);
-            fprintf(file, res, students[i].lastname, students[i].groupNumber, students[i].averageGrade); 
+            printf(res, students[i].lastname, students[i].averageGrade);
+            fprintf(file, res, students[i].lastname, students[i].averageGrade); 
         }
     }
 
