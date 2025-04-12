@@ -51,11 +51,7 @@ void viewRecords(struct Student* students, int totalStudents) {
 }
 
 void addRecord(struct Student* students, int *totalStudents) {
-    if (*totalStudents < MAX_STUDENTS) {
-        createRecord(students, totalStudents);
-    } else {
-        printf("The school ran out of chairs\n");
-    }
+    (*totalStudents < MAX_STUDENTS) ? createRecord(students, totalStudents) : printf("The school ran out of chairs\n");
 }
 
 void saveRecordsToFile(struct Student* students, int totalStudents) {
@@ -64,12 +60,10 @@ void saveRecordsToFile(struct Student* students, int totalStudents) {
         printf("Error opening file!\n");
         return;
     }
-
     for (int i = 0; i < totalStudents; i++) {
         fprintf(file, "%s %d %d %d %d %.2f\n", students[i].lastname, students[i].groupNumber,
                 students[i].physicsGrade, students[i].mathGrade, students[i].computerScienceGrade, students[i].averageGrade);
     }
-
     fclose(file);
 }
 
@@ -79,12 +73,10 @@ void loadRecordsFromFile(struct Student* students, int *totalStudents) {
         printf("Error opening file!\n");
         return;
     }
-
     while (fscanf(file, "%s %d %d %d %d %f", students[*totalStudents].lastname, &students[*totalStudents].groupNumber,
                   &students[*totalStudents].physicsGrade, &students[*totalStudents].mathGrade, &students[*totalStudents].computerScienceGrade, &students[*totalStudents].averageGrade) == 6) {
         (*totalStudents)++;
     }
-
     fclose(file);
 }
 
@@ -99,7 +91,6 @@ void solveTask(struct Student *students, int totalStudents) {
             fprintf(file, res, students[i].lastname, students[i].groupNumber, students[i].averageGrade);
         }
     }
-
     fclose(file);
 }
 
@@ -107,16 +98,13 @@ int main() {
     struct Student students[MAX_STUDENTS];
     int totalStudents = 0;
     char ch;
-
     loadRecordsFromFile(students, &totalStudents);
-
     while(1) {
         printf("\nMenu\n");
         printf("1. Create record\n");
         printf("2. View records\n");
         printf("3. Solve\n");
         printf("4. Exit\n");
-
         printf("Option: ");
         scanf(" %c", &ch);
         switch(ch) {
@@ -135,6 +123,5 @@ int main() {
                 printf("Wrong option\n");
         }
     }
-
     return 0;
 }
